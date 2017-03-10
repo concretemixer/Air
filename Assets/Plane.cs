@@ -26,8 +26,10 @@ public class Plane : MonoBehaviour {
         Vector3 fwd = transform.localToWorldMatrix * Vector3.forward;
         transform.position += fwd * speed * Time.fixedDeltaTime;
         Vector3 localTarget = (target.position - transform.position);
+
+        float tilt = Mathf.Clamp(Vector3.Angle(localTarget, fwd), -45, 45);
         
-        Vector3 _up = Quaternion.AngleAxis(20,localTarget) * Vector3.up;
+        Vector3 _up = Quaternion.AngleAxis(tilt,localTarget) * Vector3.up;
         Vector3 up = transform.worldToLocalMatrix * _up;
         Quaternion t = Quaternion.LookRotation(localTarget,up);
         
