@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
+//using UnityEditor;
 
 public class Plane : MonoBehaviour {
 
@@ -43,7 +43,14 @@ public class Plane : MonoBehaviour {
         if (Input.GetMouseButton(0))
         {
             foreach (var w in GetComponentsInChildren<Weapon>())
-                w.Fire();
+                if (w.Primary)
+                    w.Fire();
+        }
+        if (Input.GetMouseButton(1))
+        {
+            foreach (var w in GetComponentsInChildren<Weapon>())
+                if (!w.Primary)
+                    w.Fire();
         }
     }
 

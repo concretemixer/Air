@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Weapon : MonoBehaviour {
 
+    public bool Primary;
     protected Vector3 target;
 
     public virtual bool Fire()
